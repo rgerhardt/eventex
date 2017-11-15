@@ -18,6 +18,10 @@ class SubscriptionFormTest(TestCase):
         form = self.make_validated_form(cpf='8901')
         self.assertFormErrorCode(form, 'cpf', 'length')
 
+    def test_name_must_be_captalized(self):
+        form = self.make_validated_form(name='MARIO santos')
+        self.assertEqual('Mario Santos', form.cleaned_data['name'])
+
 
     def make_validated_form(self, **kwargs):
         valid = dict(
