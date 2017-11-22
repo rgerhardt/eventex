@@ -11,7 +11,7 @@ class SubscriptionFormTest(TestCase):
         self.assertSequenceEqual(expected, list(form.fields))
 
     def test_cpf_has_only_digits(self):
-        form = self.make_validated_form(cpf='ABCDE5678901')
+        form = self.make_validated_form(cpf='ABCDE678901')
         self.assertFormErrorCode(form, 'cpf', 'digits')
 
     def test_cpf_has_11_digits(self):
