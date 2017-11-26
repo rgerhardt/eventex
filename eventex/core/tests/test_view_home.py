@@ -33,3 +33,14 @@ class HomeTest(TestCase):
     def test_speakers_link(self):
         expected = 'href="{}#speakers"'.format(r('home'))
         self.assertContains(self.response, expected)
+
+    def test_talks_link(self):
+        expected = 'href="{}#talks"'.format(r('talk_list'))
+        self.assertContains(self.response, expected)
+
+
+class TalkListGetEmpty(TestCase):
+    def test_get_empty(self):
+        resp = self.client.get(r('talk_list'))
+        self.assertContains(resp, 'Ainda não existem palestras de manhã.')
+        self.assertContains(resp, 'Ainda não existem palestras de tarde.')
